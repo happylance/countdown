@@ -9,12 +9,12 @@ By default, this script will countdown from 50:00 to 0:00 for work period. Then 
 ### Usage
 Here's a sample Usage:
 ```
-$./countdown.sh
+$./countdown.sh 50 10
 Started to work at
 17:43:26
 49:18
 ```
-The last line above will keep updating every seconds until 0:00 or user inputs one the following commands.
+The first parameter (50) specifies the working period. The second parameter (10) specifies the break period. The last line above will keep updating every seconds until 0:00 or user inputs one the following commands.
 
 **N** (shift-n): Move to the next period in advance.
 
@@ -39,7 +39,6 @@ Here's a screenshot at bottom left corner when Terminal app is in background and
 
 ![Background](/images/screenshot2_countdown.png)
 
-### Advanced Usage
 [countdown.sh](https://github.com/happylance/Scripts/blob/master/countdown.sh) supports customized work period and break period. For example, if user wants to work for 40 minutes and then take a break for 5 minutes, the following command should work.
 
 ` ./countdown.sh 40 5`
