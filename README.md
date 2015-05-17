@@ -25,7 +25,12 @@ Took a break at
 17:51:01
 -00:05
 ```
-On OSX, I found it convenient by putting a terminal window running countdown.sh at the bottom left corner. See the following screenshots for more details.
+On OSX, I found it convenient by putting a terminal window running countdown.sh at the bottom left corner. 
+
+Here's a screenshots when Terminal app is in foreground.
 
 ![Foreground](/images/screenshot1_countdown.png)
+
+Here's a screenshot when Terminal app is in background and Safari app is in foreground.
+
 ![Background](/images/screenshot2_countdown.png)
