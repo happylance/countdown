@@ -38,3 +38,7 @@ Here's a screenshots at bottom left corner when Terminal app is in foreground.
 Here's a screenshot at bottom left corner when Terminal app is in background and Safari app is in foreground.
 
 ![Background](/images/screenshot2_countdown.png)
+
+### Advanced Usage
+[countdown.sh](https://github.com/happylance/Scripts/blob/master/countdown.sh) supports customized work period and break period. For example, if user wants to work for 40 minutes and then take a break for 5 minutes, the following command should work.
+` ./countdown.sh 40 5`
