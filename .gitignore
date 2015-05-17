@@ -1,0 +1,3 @@
+*.terminal
+backup/
+test/
