@@ -14,7 +14,7 @@ Started to work at
 17:43:26
 49:18
 ```
-The first parameter (50) specifies the working period. The second parameter (10) specifies the break period. The last line above will keep updating every seconds until 0:00 or user inputs one the following commands.
+The first parameter specifies that the working period is 50 minutes. The second parameter specifies that the break period is 10 minutes. The last line above will keep updating every seconds until user inputs one the following commands.
 
 **N** (shift-n): Move to the next period in advance.
 
