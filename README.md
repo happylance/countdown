@@ -1,4 +1,4 @@
-[This script] (https://github.com/happylance/Scripts/blob/master/countdown.sh) can help people know how long they have been sitting in front of a computer and when to take a break.
+[countdown.sh] (https://github.com/happylance/Scripts/blob/master/countdown.sh) can help people know how long they have been sitting in front of a computer and when to take a break.
 By default, this script will countdown from 50:00 to 0:00 for work period. Then countdown from -0:00 to -10:00 for break period.
 
 ## Getting Started
