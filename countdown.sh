@@ -22,7 +22,7 @@ _countdown_one_period() {
    keypress=''
    while [ "$stop_date" -ne "$now" -a "$keypress" != 'N' -a "$keypress" != 'Q' ]; do 
      _echo_countdown $reference_date $now
-     sleep 0.5
+     sleep 1 
      keypress="`cat -v`"
      if [ "$keypress" = 'Q' ]; then
         _stop_countdown
