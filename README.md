@@ -27,10 +27,10 @@ Took a break at
 ```
 On OSX, I found it convenient by putting a terminal window running countdown.sh at the bottom left corner. 
 
-Here's a screenshots when Terminal app is in foreground.
+Here's a screenshots at bottom left corner when Terminal app is in foreground.
 
 ![Foreground](/images/screenshot1_countdown.png)
 
-Here's a screenshot when Terminal app is in background and Safari app is in foreground.
+Here's a screenshot at bottom left corner when Terminal app is in background and Safari app is in foreground.
 
 ![Background](/images/screenshot2_countdown.png)
