@@ -22,7 +22,7 @@ _countdown_one_period() {
    while [ "$stop_date" -gt "$now" -a "$keypress" != 'N' -a "$keypress" != 'Q' ]; do 
      _echo_countdown $reference_date $now
      sleep 1 
-     keypress="$(cat -v)"
+     keypress=$(cat -v)
      if [ "$keypress" = 'Q' ]; then
         _stop_countdown
         exit
@@ -58,12 +58,8 @@ function countdown(){
    done
 }
 
-function countdown50(){
-    countdown 50 10
-}
-
 if [[ $# -eq 0 ]] ; then
-    countdown50
+    countdown 50 10
 elif [[ $# -eq 1 ]] ; then
     countdown $1 10
 else
