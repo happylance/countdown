@@ -32,7 +32,7 @@ Took a break at
 ```
 On OSX, I found it convenient by putting a terminal window running countdown.sh at the bottom left corner. 
 
-Here's a screenshots at bottom left corner when Terminal app is in foreground.
+Here's a screenshots at bottom left corner when Terminal app is in foreground. User can use `command +` and `command -` to adjust the font size in terminal until the font size looks good enough.
 
 ![Foreground](/images/screenshot1_countdown.png)
 
