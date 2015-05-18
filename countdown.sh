@@ -1,7 +1,6 @@
 #!/bin/bash
 
 _echo_countdown() {
-    #$2=`date +%s`
     if [ "$1" -gt "$2" ]; then
     	echo -ne "$(date -j -f '%s' $(($1 - $2 )) '+%M:%S')\r";
     else 
@@ -23,7 +22,7 @@ _countdown_one_period() {
    while [ "$stop_date" -gt "$now" -a "$keypress" != 'N' -a "$keypress" != 'Q' ]; do 
      _echo_countdown $reference_date $now
      sleep 1 
-     keypress="`cat -v`"
+     keypress="$(cat -v)"
      if [ "$keypress" = 'Q' ]; then
         _stop_countdown
         exit
@@ -33,8 +32,7 @@ _countdown_one_period() {
 }
 
 function countdown(){
-   # Hide cursor
-   tput civis
+   tput civis # Hide cursor
 
    # Do not echo input from stdin
    if [ -t 0 ]; then stty -echo -icanon -icrnl time 0 min 0; fi
