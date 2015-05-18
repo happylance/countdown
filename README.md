@@ -43,3 +43,7 @@ Here's a screenshot at bottom left corner when Terminal app is in background and
 [countdown.sh](https://github.com/happylance/Scripts/blob/master/countdown.sh) supports customized work period and break period. For example, if user wants to work for 40 minutes and then take a break for 5 minutes, the following command should work.
 
 ` ./countdown.sh 40 5`
+
+## Uninstallation
+`cd <Path which contains countdown folder>`
+`rm -rf countdown`
