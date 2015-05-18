@@ -5,7 +5,7 @@ By default, this script will countdown from 50:00 to 0:00 for work period. Then 
 ### Prerequisites
 This script requires `bash`. I have only tested it in OSX.
 ### Basic Installation
-`curl -O https://raw.githubusercontent.com/happylance/Scripts/master/countdown.sh ; chmod +x countdown.sh`
+`git clone https://github.com/happylance/countdown.git ; cd countdown`
 
 ## Usage
 Here's a sample Usage:
@@ -43,3 +43,9 @@ Here's a screenshot at bottom left corner when Terminal app is in background and
 [countdown.sh](https://github.com/happylance/Scripts/blob/master/countdown.sh) supports customized work period and break period. For example, if user wants to work for 40 minutes and then take a break for 5 minutes, the following command should work.
 
 ` ./countdown.sh 40 5`
+
+## Uninstallation
+```
+cd <Path which contains countdown folder>
+rm -rf countdown
+```
