@@ -45,5 +45,7 @@ Here's a screenshot at bottom left corner when Terminal app is in background and
 ` ./countdown.sh 40 5`
 
 ## Uninstallation
-`cd <Path which contains countdown folder>`
-`rm -rf countdown`
+```
+cd <Path which contains countdown folder>
+rm -rf countdown
+```
