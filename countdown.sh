@@ -39,7 +39,7 @@ function countdown(){
    # Do not echo input from stdin
    if [ -t 0 ]; then stty -echo -icanon -icrnl time 0 min 0; fi
    
-   # Handle Ctrl-c and ctrl-z gracefully.
+   # Handle ctrl-c and ctrl-z gracefully.
    trap "_stop_countdown ; exit" SIGINT
    trap "" SIGTSTP   
 
