@@ -5,7 +5,7 @@ By default, this script will countdown from 50:00 to 0:00 for work period. Then 
 ### Prerequisites
 This script requires `bash`. I have only tested it in OSX.
 ### Basic Installation
-`curl -O https://raw.githubusercontent.com/happylance/Scripts/master/countdown.sh ; chmod +x countdown.sh`
+`git clone https://github.com/happylance/countdown.git ; cd countdown`
 
 ## Usage
 Here's a sample Usage:
