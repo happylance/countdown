@@ -19,7 +19,7 @@ The first parameter specifies that the working period is 50 minutes. The second 
 
 **N** (shift-n): Move to the next period in advance.
 
-**Q** (shift-q): Quit the script.
+**ctrl-c**: Quit the script.
 
 Here's a sample output after applying an '**N**' command at 17:51:01.
 ```
