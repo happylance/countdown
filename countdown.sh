@@ -20,7 +20,7 @@ _countdown_one_period() {
    reference_date=$1
    stop_date=$2
    keypress=''
-   while [ "$stop_date" -ne "$now" -a "$keypress" != 'N' -a "$keypress" != 'Q' ]; do 
+   while [ "$stop_date" -gt "$now" -a "$keypress" != 'N' -a "$keypress" != 'Q' ]; do 
      _echo_countdown $reference_date $now
      sleep 1 
      keypress="`cat -v`"
