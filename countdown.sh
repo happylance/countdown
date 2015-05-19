@@ -53,6 +53,14 @@ function countdown(){
      echo "Took a break at"
      date -j -f '%s' $stop_date '+%H:%M:%S'
      _countdown_one_period $stop_date $start_date
+     
+     # Do not start the next cycle when display is off.
+     while true; do
+         display_state=$(ioreg -r -d 1 -n IODisplayWrangler | grep -i IOPowerManagement | sed 's/.*DevicePowerState"=\([0-9]\).*/\1/g')
+	 if [ $display_state -eq 4 ]; then break; fi
+	 sleep 10
+	 now=$(date +%s)
+     done
    done
 }
 
