@@ -16,11 +16,12 @@ _stop_countdown(){
 }
 
 _countdown_one_period() {
-   reference_date=$1
-   stop_date=$2
+   one_period_reference_date=$1
+   one_period_stop_date=$2
    keypress=''
-   while [ "$stop_date" -gt "$now" -a "$keypress" != 'N' ]; do 
-     _echo_countdown $reference_date $now
+   while [ "$one_period_stop_date" -gt "$now" -a "$keypress" != 'N' ]; do 
+     previous_date=$now
+     _echo_countdown $one_period_reference_date $now
      sleep 1 
      keypress=$(cat -v)
      now=$(date +%s)
@@ -47,12 +48,11 @@ function countdown(){
      stop_date=$(($now + $work_period * 60)); 
      _countdown_one_period $stop_date $stop_date
 
+     stop_date=$(($previous_date + 1))
      start_date=$(($stop_date + $break_period * 60)); 
-     if [ $now -lt $start_date ]; then
-       echo "Took a break at"
-       date -j -f '%s' $stop_date '+%H:%M:%S'
-       _countdown_one_period $stop_date $start_date
-     fi
+     echo "Took a break at"
+     date -j -f '%s' $stop_date '+%H:%M:%S'
+     _countdown_one_period $stop_date $start_date
    done
 }
 
