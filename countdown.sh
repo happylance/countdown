@@ -47,10 +47,12 @@ function countdown(){
      stop_date=$(($now + $work_period * 60)); 
      _countdown_one_period $stop_date $stop_date
 
-     echo "Took a break at"
-     date '+%H:%M:%S'
-     stop_date=$(($now + $break_period * 60)); 
-     _countdown_one_period $now $stop_date
+     start_date=$(($stop_date + $break_period * 60)); 
+     if [ $now -lt $start_date ]; then
+       echo "Took a break at"
+       date -j -f '%s' $stop_date '+%H:%M:%S'
+       _countdown_one_period $stop_date $start_date
+     fi
    done
 }
 
