@@ -1,4 +1,4 @@
-[countdown.sh] (https://github.com/happylance/Scripts/blob/master/countdown.sh) can help people know how long they have been sitting in front of a computer and when to take a break.
+[countdown.sh] (https://github.com/happylance/countdown/blob/master/countdown.sh) can help people know how long they have been sitting in front of a computer and when to take a break.
 By default, this script will countdown from 50:00 to 0:00 for work period. Then countdown from -0:00 to -10:00 for break period.
 
 ## Getting Started
@@ -40,7 +40,7 @@ Here's a screenshot at bottom left corner when Terminal app is in background and
 
 ![Background](/images/screenshot2_countdown.png)
 
-[countdown.sh](https://github.com/happylance/Scripts/blob/master/countdown.sh) supports customized work period and break period. For example, if user wants to work for 40 minutes and then take a break for 5 minutes, the following command should work.
+[countdown.sh](https://github.com/happylance/countdown/blob/master/countdown.sh) supports customized work period and break period. For example, if user wants to work for 40 minutes and then take a break for 5 minutes, the following command should work.
 
 ` ./countdown.sh 40 5`
 
