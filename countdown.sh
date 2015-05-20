@@ -28,6 +28,11 @@ _countdown_one_period() {
    done
 }
 
+_show_pop_up() {
+   osascript -e 'display dialog "You need to take a break."' &>/dev/null
+}
+
+
 function countdown(){
    tput civis # Hide cursor
 
@@ -48,7 +53,24 @@ function countdown(){
      stop_date=$(($now + $work_period * 60)); 
      _countdown_one_period $stop_date $stop_date
 
-     stop_date=$(($previous_date + 1))
+     while true; do
+         display_state=$(ioreg -r -d 1 -n IODisplayWrangler | grep -i IOPowerManagement | sed 's/.*DevicePowerState"=\([0-9]\).*/\1/g')	
+         if [ $display_state -eq 4 ]; then 
+             _show_pop_up
+             exit_code=$?
+             now=$(date +%s)
+             if [ $exit_code -eq 0 ]; then 
+                  stop_date=$now
+                  break;
+             fi
+         else
+             stop_date=$(($previous_date + 1))
+             break;
+         fi
+         stop_date=$(($now + 60));
+         _countdown_one_period $stop_date $stop_date
+     done
+
      start_date=$(($stop_date + $break_period * 60)); 
      echo "Took a break at"
      date -j -f '%s' $stop_date '+%H:%M:%S'
@@ -59,8 +81,8 @@ function countdown(){
          display_state=$(ioreg -r -d 1 -n IODisplayWrangler | grep -i IOPowerManagement | sed 's/.*DevicePowerState"=\([0-9]\).*/\1/g')	
          if [ $display_state -eq 4 ]; then break; fi
          sleep 10
-         now=$(date +%s)
      done
+     now=$(date +%s)
    done
 }
 
