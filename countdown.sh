@@ -57,13 +57,14 @@ function countdown(){
 
     now=$(date +%s)
     while true; do
-        echo "Started to work at"
+        echo -e "\033[0mStarted to work at" # Normal color
         date '+%H:%M:%S'
         stop_date=$(($now + $work_period * 60)); 
         _countdown_one_period $stop_date $stop_date
 
+        stop_date=$(($previous_date + 1))
         start_date=$(($stop_date + $break_period * 60)); 
-        echo "Took a break at"
+        echo -e "\033[0;32mTook a break at" # Green color
         date -j -f '%s' $stop_date '+%H:%M:%S'
         _countdown_one_period $stop_date $start_date
 
