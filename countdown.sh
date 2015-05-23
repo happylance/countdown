@@ -2,7 +2,7 @@
 
 _echo_countdown() {
     if [ "$1" -gt "$2" ]; then
-    	echo -ne "$(date -j -f '%s' $(($1 - $2 )) '+%M:%S')\r";
+        echo -ne "$(date -j -f '%s' $(($1 - $2 )) '+%M:%S')\r";
     else 
         echo -ne "-$(date -j -f '%s' $(( $2 - $1 )) '+%M:%S')\r";
     fi
@@ -20,11 +20,11 @@ _countdown_one_period() {
    one_period_stop_date=$2
    keypress=''
    while [ "$one_period_stop_date" -gt "$now" -a "$keypress" != 'N' ]; do 
-     previous_date=$now
-     _echo_countdown $one_period_reference_date $now
-     sleep 1 
-     keypress=$(cat -v)
-     now=$(date +%s)
+       previous_date=$now
+       _echo_countdown $one_period_reference_date $now
+       sleep 1 
+       keypress=$(cat -v)
+       now=$(date +%s)
    done
 }
 
