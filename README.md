@@ -32,13 +32,9 @@ Took a break at
 ```
 On OSX, I found it convenient by putting a terminal window running countdown.sh at the bottom left corner. 
 
-Here's a screenshots at bottom left corner when Terminal app is in foreground. User can use `command +` and `command -` to adjust the font size in terminal until the font size looks good enough.
+Here's a screencast at bottom left corner. User can use `command +` and `command -` to adjust the font size in terminal until the font size looks good enough.
 
-![Foreground](/images/screencast.gif)
-
-Here's a screenshot at bottom left corner when Terminal app is in background and Safari app is in foreground.
-
-![Background](/images/screenshot2_countdown.png)
+![screencast](/images/screencast.gif)
 
 [countdown.sh](https://github.com/happylance/countdown/blob/master/countdown.sh) supports customized work period and break period. For example, if user wants to work for 40 minutes and then take a break for 5 minutes, the following command should work.
 
