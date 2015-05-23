@@ -31,8 +31,7 @@ Took a break at
 -00:05
 ```
 On OSX, I found it convenient by putting a terminal window running countdown.sh at the bottom left corner. 
-
-Here's a screencast at bottom left corner. User can use `command +` and `command -` to adjust the font size in terminal until the font size looks good enough.
+User can use `command +` and `command -` to adjust the font size in terminal until the font size looks good enough.
 
 ![screencast](/images/screencast.gif)
 
