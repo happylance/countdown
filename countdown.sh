@@ -64,7 +64,7 @@ function countdown(){
 
         stop_date=$(($previous_date + 1))
         start_date=$(($stop_date + $break_period * 60)); 
-        echo -e "\033[1;33mTook a break at" # Green color
+        echo -e "\033[1;33mTook a break at" # Yellow color
         date -j -f '%s' $stop_date '+%H:%M:%S'
         _countdown_one_period $stop_date $start_date
 
