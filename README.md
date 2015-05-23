@@ -34,7 +34,7 @@ On OSX, I found it convenient by putting a terminal window running countdown.sh 
 
 Here's a screenshots at bottom left corner when Terminal app is in foreground. User can use `command +` and `command -` to adjust the font size in terminal until the font size looks good enough.
 
-![Foreground](/images/screenshot1_countdown.png)
+![Foreground](/images/screencast.gif)
 
 Here's a screenshot at bottom left corner when Terminal app is in background and Safari app is in foreground.
 
