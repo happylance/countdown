@@ -10,7 +10,7 @@ This script requires `bash`. I have only tested it in OSX.
 ## Usage
 ./countdown.sh [-s] [-u \<1-60\>] [-w \<1-59\>] [-b \<1-10\>]
 
--s Show countdown using simple time format which include minutes only.
+-s Show countdown using simple time format which includes minutes only.
 
 -u Update period in seconds. Default is 1.
 
