@@ -2,13 +2,17 @@
 
 work_period=50
 break_period=10
+update_period=1
 
 _echo_usage () {
-    echo "usage: $0 [-w <work period in minutes (1-59)>] [-b <break period in minutes (1-10)>]"
+    echo "usage: $0 [-u <1-60>] [-w <1-59>] [-b <1-10>]"
+    echo "-u Update period in seconds ."
+    echo "-w Work period in minutes."
+    echo "-b Break period in minutes."
     exit 2
 }
 
-args=$(getopt w:b: $*)
+args=$(getopt u:w:b: $*)
 if [ $? != 0 ]; then _echo_usage; fi
 
 set -- $args
@@ -16,6 +20,13 @@ for i
 do
     case "$i"
         in
+    -u)
+        if [[ $2 -ge 1 && $2 -le 60 ]]; then 
+            update_period=$2
+        else
+            _echo_usage
+        fi
+        shift 2;;
     -w)
         if [[ $2 -ge 1 && $2 -le 59 ]]; then 
             work_period=$2
@@ -57,7 +68,7 @@ _countdown_one_period() {
    while [ "$one_period_stop_date" -gt "$now" -a "$keypress" != 'N' ]; do
        previous_date=$now
        _echo_countdown $one_period_reference_date $now
-       sleep 1 
+       sleep $update_period 
        keypress=$(cat -v)
        now=$(date +%s)
    done

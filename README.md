@@ -8,7 +8,13 @@ This script requires `bash`. I have only tested it in OSX.
 `git clone https://github.com/happylance/countdown.git ; cd countdown`
 
 ## Usage
-./countdown.sh [-w \<work period in minutes (1-59)\>] [-b \<break period in minutes (1-10)\>]
+./countdown.sh [-u \<1-60\>] [-w \<1-59\>] [-b \<1-10\>]
+
+-u Update period in seconds .
+
+-w Work period in minutes.
+
+-b Break period in minutes.
 
 Here's a sample Usage:
 ```
