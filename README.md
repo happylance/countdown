@@ -8,7 +8,9 @@ This script requires `bash`. I have only tested it in OSX.
 `git clone https://github.com/happylance/countdown.git ; cd countdown`
 
 ## Usage
-./countdown.sh [-u \<1-60\>] [-w \<1-59\>] [-b \<1-10\>]
+./countdown.sh [-s] [-u \<1-60\>] [-w \<1-59\>] [-b \<1-10\>]
+
+-s Show countdown using simple time format which include minutes only.
 
 -u Update period in seconds. Default is 1.
 

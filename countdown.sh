@@ -8,9 +8,9 @@ simple_time_format=0
 _echo_usage () {
     echo "usage: $0 [-s] [-u <1-60>] [-w <1-59>] [-b <1-10>]"
     echo "-s Show countdown using simple time format which include minutes only."
-    echo "-u Update period in seconds ."
-    echo "-w Work period in minutes."
-    echo "-b Break period in minutes."
+    echo "-u Update period in seconds. Default is 1."
+    echo "-w Work period in minutes. Default is 50."
+    echo "-b Break period in minutes. Default is 10."
     exit 2
 }
 
