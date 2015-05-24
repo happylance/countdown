@@ -1,5 +1,5 @@
 [countdown.sh] (https://github.com/happylance/countdown/blob/master/countdown.sh) can help people know how long they have been sitting in front of a computer and when to take a break.
-By default, this script will countdown from 50:00 to 0:01 for work period. Then countdown from -0:00 to -9:59 for break period.
+By default, this script will countdown from 50:00 to 0:01 for work period. Then countdown from 10:00 to 0.01 in another color for break period.
 
 ## Getting Started
 ### Prerequisites
@@ -36,7 +36,7 @@ Started to work at
 17:43:26
 Took a break at
 17:51:01
--00:05
+09:55
 ```
 On OSX, I found it convenient by putting a terminal window running countdown.sh at the bottom left corner. 
 User can use `command +` and `command -` to adjust the font size in terminal until the font size looks good enough.

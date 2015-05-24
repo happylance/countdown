@@ -3,16 +3,18 @@
 work_period=50
 break_period=10
 update_period=1
+simple_time_format=0
 
 _echo_usage () {
-    echo "usage: $0 [-u <1-60>] [-w <1-59>] [-b <1-10>]"
+    echo "usage: $0 [-s] [-u <1-60>] [-w <1-59>] [-b <1-10>]"
+    echo "-s Show countdown using simple time format which include minutes only."
     echo "-u Update period in seconds ."
     echo "-w Work period in minutes."
     echo "-b Break period in minutes."
     exit 2
 }
 
-args=$(getopt u:w:b: $*)
+args=$(getopt su:w:b: $*)
 if [ $? != 0 ]; then _echo_usage; fi
 
 set -- $args
@@ -20,6 +22,8 @@ for i
 do
     case "$i"
         in
+    -s)
+        simple_time_format=1; shift;;
     -u)
         if [[ $2 -ge 1 && $2 -le 60 ]]; then 
             update_period=$2
@@ -47,10 +51,13 @@ esac
 done
 
 _echo_countdown() {
+    if [ "$simple_time_format" -eq 0 ]; then
+        time_format='+%M:%S'
+    else
+        time_format='+%M'
+    fi
     if [ "$1" -gt "$2" ]; then
-        echo -ne "$(date -j -f '%s' $(($1 - $2 )) '+%M:%S')\r";
-    else 
-        echo -ne "-$(date -j -f '%s' $(( $2 - $1 )) '+%M:%S')\r";
+        echo -ne "$(date -j -f '%s' $(($1 - $2 )) $time_format)\r";
     fi
 }
 
@@ -112,7 +119,7 @@ function countdown(){
         start_date=$(($stop_date + $break_period * 60)); 
         echo -e "\033[0;32mTook a break at" # Green color
         date -j -f '%s' $stop_date '+%H:%M:%S'
-        _countdown_one_period $stop_date $start_date
+        _countdown_one_period $start_date $start_date
 
         _wait_when_display_is_off
      done
