@@ -8,9 +8,10 @@ This script requires `bash`. I have only tested it in OSX.
 `git clone https://github.com/happylance/countdown.git ; cd countdown`
 
 ## Usage
+usage: ./countdown.sh [-w <work period in minutes (1-59)>] [-b <break period in minutes (1-10)>]
 Here's a sample Usage:
 ```
-$./countdown.sh 50 10
+$./countdown.sh
 Started to work at
 17:43:26
 49:18
@@ -37,7 +38,7 @@ User can use `command +` and `command -` to adjust the font size in terminal unt
 
 [countdown.sh](https://github.com/happylance/countdown/blob/master/countdown.sh) supports customized work period and break period. For example, if user wants to work for 40 minutes and then take a break for 5 minutes, the following command should work.
 
-` ./countdown.sh 40 5`
+` ./countdown.sh -w 40 -b 5`
 
 ## Uninstallation
 ```

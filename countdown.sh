@@ -1,5 +1,40 @@
 #!/bin/bash
 
+work_period=50
+break_period=10
+
+_echo_usage () {
+    echo "usage: $0 [-w <work period in minutes (1-59)>] [-b <break period in minutes (1-10)>]"
+    exit 2
+}
+
+args=$(getopt w:b: $*)
+if [ $? != 0 ]; then _echo_usage; fi
+
+set -- $args
+for i
+do
+    case "$i"
+        in
+    -w)
+        if [[ $2 -ge 1 && $2 -le 59 ]]; then 
+            work_period=$2
+        else
+            _echo_usage
+        fi
+        shift 2;;
+    -b)
+        if [[ $2 -ge 1 && $2 -le 10 ]]; then
+            break_period=$2
+        else
+            _echo_usage
+        fi
+        shift 2;;
+    --)
+        shift; break;;
+esac
+done
+
 _echo_countdown() {
     if [ "$1" -gt "$2" ]; then
         echo -ne "$(date -j -f '%s' $(($1 - $2 )) '+%M:%S')\r";
@@ -19,7 +54,7 @@ _countdown_one_period() {
    one_period_reference_date=$1
    one_period_stop_date=$2
    keypress=''
-   while [ "$one_period_stop_date" -gt "$now" -a "$keypress" != 'N' ]; do 
+   while [ "$one_period_stop_date" -gt "$now" -a "$keypress" != 'N' ]; do
        previous_date=$now
        _echo_countdown $one_period_reference_date $now
        sleep 1 
@@ -72,11 +107,5 @@ function countdown(){
      done
 }
 
-if [[ $# -eq 0 ]] ; then
-    countdown 50 10
-elif [[ $# -eq 1 ]] ; then
-    countdown $1 10
-else
-    countdown $1 $2
-fi
+countdown $work_period $break_period
 
