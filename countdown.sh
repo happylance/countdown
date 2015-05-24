@@ -73,11 +73,16 @@ _countdown_one_period() {
    one_period_stop_date=$2
    keypress=''
    while [ "$one_period_stop_date" -gt "$now" -a "$keypress" != 'N' ]; do
-       previous_date=$now
        _echo_countdown $one_period_reference_date $now
-       sleep $update_period 
-       keypress=$(cat -v)
-       now=$(date +%s)
+       count=0
+       while [ $count -lt $update_period ]; do
+           previous_date=$now
+           sleep 1 
+           count=$((count+1))
+           keypress=$(cat -v)
+           now=$(date +%s)
+           if [ "$keypress" == 'N' ]; then break; fi
+       done
    done
 }
 
