@@ -10,11 +10,11 @@ This script requires `bash`. I have only tested it in OSX.
 ## Usage
 ./countdown.sh [-u \<1-60\>] [-w \<1-59\>] [-b \<1-10\>]
 
--u Update period in seconds .
+-u Update period in seconds. Default is 1.
 
--w Work period in minutes.
+-w Work period in minutes. Default is 50.
 
--b Break period in minutes.
+-b Break period in minutes. Default is 10.
 
 Here's a sample Usage:
 ```
