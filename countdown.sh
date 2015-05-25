@@ -4,17 +4,19 @@ work_period=50
 break_period=10
 update_period=1
 simple_time_format=0
+file_name=""
 
 _echo_usage () {
-    echo "usage: $0 [-s] [-u <1-60>] [-w <1-59>] [-b <1-10>]"
+    echo "usage: $0 [-s] [-u <1-60>] [-w <1-59>] [-b <1-10>][-f <file_path/file_name>]"
     echo "-s Show countdown using simple time format which includes minutes only."
     echo "-u Update period in seconds. Default is 1."
     echo "-w Work period in minutes. Default is 50."
     echo "-b Break period in minutes. Default is 10."
+    echo "-f Specifies a file (including path) to which the countdown info should be logged."
     exit 2
 }
 
-args=$(getopt su:w:b: $*)
+args=$(getopt su:w:b:f: $*)
 if [ $? != 0 ]; then _echo_usage; fi
 
 set -- $args
@@ -45,6 +47,10 @@ do
             _echo_usage
         fi
         shift 2;;
+    -f)
+        touch "$2" || _echo_usage
+        file_name="$2"
+        shift 2;;
     --)
         shift; break;;
 esac
@@ -69,21 +75,25 @@ _stop_countdown(){
 }
 
 _countdown_one_period() {
-   one_period_reference_date=$1
-   one_period_stop_date=$2
-   keypress=''
-   while [ "$one_period_stop_date" -gt "$now" -a "$keypress" != 'N' ]; do
-       _echo_countdown $one_period_reference_date $now
-       count=0
-       while [ $count -lt $update_period ]; do
-           previous_date=$now
-           sleep 1 
-           count=$((count+1))
-           keypress=$(cat -v)
-           now=$(date +%s)
-           if [ "$keypress" == 'N' ]; then break; fi
-       done
-   done
+    period_type=$1 
+    one_period_stop_date=$2
+    if [ -w "$file_name" ]; then 
+        echo -e "$period_type\n$one_period_stop_date" > "$file_name"
+    fi
+ 
+    keypress=''
+    while [ "$one_period_stop_date" -gt "$now" -a "$keypress" != 'N' ]; do
+        _echo_countdown $one_period_stop_date $now
+        count=0
+        while [ $count -lt $update_period ]; do
+            previous_date=$now
+            sleep 1 
+            count=$((count+1))
+            keypress=$(cat -v)
+            now=$(date +%s)
+            if [ "$keypress" == 'N' ]; then break; fi
+        done
+    done
 }
 
 _show_pop_up() {
@@ -118,13 +128,13 @@ function countdown(){
         echo -e "\033[0mStarted to work at" # Normal color
         date '+%H:%M:%S'
         stop_date=$(($now + $work_period * 60)); 
-        _countdown_one_period $stop_date $stop_date
+        _countdown_one_period "w" $stop_date
 
         stop_date=$(($previous_date + 1))
         start_date=$(($stop_date + $break_period * 60)); 
         echo -e "\033[0;32mTook a break at" # Green color
         date -j -f '%s' $stop_date '+%H:%M:%S'
-        _countdown_one_period $start_date $start_date
+        _countdown_one_period "b" $start_date
 
         _wait_when_display_is_off
      done
