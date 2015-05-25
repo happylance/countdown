@@ -17,7 +17,7 @@ _echo_usage () {
 }
 
 args=$(getopt su:w:b:f: $*)
-if [ $? != 0 ]; then _echo_usage; fi
+[ $? != 0 ] && _echo_usage
 
 set -- $args
 for i
@@ -27,25 +27,16 @@ do
     -s)
         simple_time_format=1; shift;;
     -u)
-        if [[ $2 -ge 1 && $2 -le 60 ]]; then 
-            update_period=$2
-        else
-            _echo_usage
-        fi
+        [[ $2 -ge 1 && $2 -le 60 ]] || _echo_usage
+        update_period=$2
         shift 2;;
     -w)
-        if [[ $2 -ge 1 && $2 -le 59 ]]; then 
-            work_period=$2
-        else
-            _echo_usage
-        fi
+        [[ $2 -ge 1 && $2 -le 59 ]] || _echo_usage
+        work_period=$2
         shift 2;;
     -b)
-        if [[ $2 -ge 1 && $2 -le 10 ]]; then
-            break_period=$2
-        else
-            _echo_usage
-        fi
+        [[ $2 -ge 1 && $2 -le 10 ]] || _echo_usage
+        break_period=$2
         shift 2;;
     -f)
         touch "$2" || _echo_usage
@@ -70,7 +61,7 @@ _echo_countdown() {
 _stop_countdown(){
     echo "Stopped at"
     date '+%H:%M:%S'
-    if [ -t 0 ]; then stty sane; fi
+    [ -t 0 ] && stty sane
     tput cnorm
 }
 
@@ -91,7 +82,7 @@ _countdown_one_period() {
             count=$((count+1))
             keypress=$(cat -v)
             now=$(date +%s)
-            if [ "$keypress" == 'N' ]; then break; fi
+            [ "$keypress" == 'N' ] && break 
         done
     done
 }
@@ -104,7 +95,7 @@ _wait_when_display_is_off (){
     # Do not start the next cycle when display is off.
     while true; do
         display_state=$(ioreg -r -d 1 -n IODisplayWrangler | grep -i IOPowerManagement | sed 's/.*DevicePowerState"=\([0-9]\).*/\1/g')	
-        if [ $display_state -eq 4 ]; then break; fi
+        [ $display_state -eq 4 ] && break
         sleep 10
     done
     now=$(date +%s)
@@ -114,7 +105,7 @@ function countdown(){
     tput civis # Hide cursor
 
     # Do not echo input from stdin
-    if [ -t 0 ]; then stty -echo -icanon -icrnl time 0 min 0; fi
+    [ -t 0 ] && stty -echo -icanon -icrnl time 0 min 0
    
     # Handle ctrl-c and ctrl-z gracefully.
     trap "_stop_countdown ; exit" SIGINT
