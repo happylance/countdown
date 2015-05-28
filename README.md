@@ -12,11 +12,15 @@ This script requires `bash`. I have only tested it in OSX.
 
 -s Show countdown using simple time format which includes minutes only.
 
+-n Allow OSX notification when a break period is started.
+
 -u Update period in seconds. Default is 1.
 
 -w Work period in minutes. Default is 50.
 
 -b Break period in minutes. Default is 10.
+
+-f Specifies a file (including path) to which the countdown info should be logged.
 
 Here's a sample Usage:
 ```
