@@ -4,11 +4,13 @@ work_period=50
 break_period=10
 update_period=1
 simple_time_format=0
+allow_notification=0
 file_name=""
 
 _echo_usage () {
-    echo "usage: $0 [-s] [-u <1-60>] [-w <1-59>] [-b <1-10>][-f <file_path/file_name>]"
+    echo "usage: $0 [-s] [-n] [-u <1-60>] [-w <1-59>] [-b <1-10>][-f <file_path/file_name>]"
     echo "-s Show countdown using simple time format which includes minutes only."
+    echo "-u Allow OSX notification when a break period is started."
     echo "-u Update period in seconds. Default is 1."
     echo "-w Work period in minutes. Default is 50."
     echo "-b Break period in minutes. Default is 10."
@@ -16,7 +18,7 @@ _echo_usage () {
     exit 2
 }
 
-args=$(getopt su:w:b:f: $*)
+args=$(getopt snu:w:b:f: $*)
 [ $? != 0 ] && _echo_usage
 
 set -- $args
@@ -24,8 +26,8 @@ for i
 do
     case "$i"
         in
-    -s)
-        simple_time_format=1; shift;;
+    -s) simple_time_format=1; shift;;
+    -n) allow_notification=1; shift;;
     -u)
         [[ $2 -ge 1 && $2 -le 60 ]] || _echo_usage
         update_period=$2
@@ -91,6 +93,9 @@ _show_pop_up() {
    osascript -e 'display dialog "You need to take a break."' &>/dev/null
 }
 
+_show_notification() {
+    osascript -e 'display notification "You need to take a break." with title "Countdown"'
+}
 _wait_when_display_is_off (){
     # Do not start the next cycle when display is off.
     while true; do
@@ -121,6 +126,7 @@ function countdown(){
         stop_date=$(($now + $work_period * 60)); 
         _countdown_one_period "w" $stop_date
 
+        [ $allow_notification -eq 1 ] && _show_notification
         stop_date=$(($previous_date + 1))
         start_date=$(($stop_date + $break_period * 60)); 
         echo -e "\033[0;32mTook a break at" # Green color
