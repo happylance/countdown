@@ -89,10 +89,6 @@ _countdown_one_period() {
     done
 }
 
-_show_pop_up() {
-   osascript -e 'display dialog "You need to take a break."' &>/dev/null
-}
-
 _show_notification() {
     osascript -e 'display notification "You need to take a break." with title "Countdown"'
 }
