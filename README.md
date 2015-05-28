@@ -8,7 +8,7 @@ This script requires `bash`. I have only tested it in OSX.
 `git clone https://github.com/happylance/countdown.git ; cd countdown`
 
 ## Usage
-./countdown.sh [-s] [-u \<1-60\>] [-w \<1-59\>] [-b \<1-10\>]
+./countdown.sh [-s] [-n] [-u \<1-60\>] [-w \<1-59\>] [-b \<1-10\>] [-f]
 
 -s Show countdown using simple time format which includes minutes only.
 
@@ -20,7 +20,7 @@ This script requires `bash`. I have only tested it in OSX.
 
 -b Break period in minutes. Default is 10.
 
--f Specifies a file (including path) to which the countdown info should be logged.
+-f Specifies whether the countdown info should be logged into a file named ".countdown".
 
 Here's a sample Usage:
 ```

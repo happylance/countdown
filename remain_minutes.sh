@@ -1,6 +1,7 @@
 #/bin/bash
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+file="$DIR""/.countdown"
 read_countdown() {
-    file=~/.countdown
     if ! [ -f $file ]; then return; fi
     args=($(cat "$file"))  
     period_type=${args[0]}

@@ -5,22 +5,25 @@ break_period=10
 update_period=1
 simple_time_format=0
 allow_notification=0
-file_name=""
+log_to_file=0
+
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+file_name="$DIR""/.countdown"
 
 _echo_usage () {
     cat << EOF
-usage: $0 [-s] [-n] [-u <1-60>] [-w <1-59>] [-b <1-10>][-f <file_path/file_name>]
+usage: $0 [-s] [-n] [-u <1-60>] [-w <1-59>] [-b <1-10>] [-f]
     -s Show countdown using simple time format which includes minutes only.
     -n Allow OSX notification when a break period is started.
     -u Update period in seconds. Default is 1.
     -w Work period in minutes. Default is 50.
     -b Break period in minutes. Default is 10.
-    -f Specifies a file (including path) to which the countdown info should be logged.
+    -f Specifies whether the countdown info should be logged into a file named ".countdown".
 EOF
     exit 2
 }
 
-args=$(getopt snu:w:b:f: $*)
+args=$(getopt snu:w:b:f $*)
 [ $? != 0 ] && _echo_usage
 
 set -- $args
@@ -42,10 +45,7 @@ do
         [[ $2 -ge 1 && $2 -le 10 ]] || _echo_usage
         break_period=$2
         shift 2;;
-    -f)
-        touch "$2" || _echo_usage
-        file_name="$2"
-        shift 2;;
+    -f) log_to_file=1; shift;;
     --)
         shift; break;;
 esac
@@ -72,9 +72,7 @@ _stop_countdown(){
 _countdown_one_period() {
     period_type=$1 
     one_period_stop_date=$2
-    if [ -w "$file_name" ]; then 
-        echo -e "$period_type\n$one_period_stop_date" > "$file_name"
-    fi
+    [ $allow_notification -eq 1 ] && echo -e "$period_type\n$one_period_stop_date" > "$file_name"
  
     keypress=''
     while [ "$one_period_stop_date" -gt "$now" -a "$keypress" != 'N' ]; do
