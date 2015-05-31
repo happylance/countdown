@@ -74,7 +74,7 @@ _countdown_one_period() {
     [ $log_to_file -eq 1 ] && echo -e "$period_type\n$one_period_stop_date" > "$file_name"
  
     keypress=''
-    while [ "$one_period_stop_date" -gt "$now" -a "$keypress" != 'N' ]; do
+    while [ "$one_period_stop_date" -gt "$now" ]; do
         _echo_countdown $one_period_stop_date $now
         count=0
         while [ $count -lt $update_period ]; do
@@ -83,7 +83,8 @@ _countdown_one_period() {
             count=$((count+1))
             keypress=$(cat -v)
             now=$(date +%s)
-            [ "$keypress" == 'N' ] && break 
+            [ "$keypress" == 'N' ] && return 
+            [ $now -ge $(($previous_date + $break_period * 60)) ] && return;
         done
     done
 }
