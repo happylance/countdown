@@ -18,7 +18,7 @@ EOF
     exit 2
 }
 
-args=$(getopt snu:w:b:f $*)
+args=$(getopt sw:b: $*)
 [ $? != 0 ] && _echo_usage
 
 set -- $args
