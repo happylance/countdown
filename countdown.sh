@@ -64,6 +64,12 @@ _stop_countdown(){
     tput cnorm
 }
 
+_is_display_on() {
+    display_state=$(ioreg -r -d 1 -n IODisplayWrangler | grep -i IOPowerManagement | sed 's/.*DevicePowerState"=\([0-9]\).*/\1/g')
+    [ $display_state -eq 4 ] && return 0
+    return 1
+}
+
 _countdown_one_period() {
     period_type=$1 
     one_period_stop_date=$2
@@ -74,7 +80,7 @@ _countdown_one_period() {
         _echo_countdown $one_period_stop_date $now
         count=0
         while [ $count -lt $update_period ]; do
-            previous_date=$now
+            _is_display_on && previous_date=$now
             sleep 1 
             count=$((count+1))
             keypress=$(cat -v)
