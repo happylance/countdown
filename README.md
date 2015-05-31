@@ -8,19 +8,17 @@ This script requires `bash`. I have only tested it in OSX.
 `git clone https://github.com/happylance/countdown.git ; cd countdown`
 
 ## Usage
-./countdown.sh [-s] [-n] [-u \<1-60\>] [-w \<1-59\>] [-b \<1-10\>] [-f]
+./countdown.sh [-snf] [-w 1-59] [-b 1-10]
 
 -s Show countdown using simple time format which includes minutes only.
 
 -n Allow OSX notification when a break period is started.
 
--u Update period in seconds. Default is 1.
+-f Specifies whether the countdown info should be logged into a file named ".countdown".
 
 -w Work period in minutes. Default is 50.
 
 -b Break period in minutes. Default is 10.
-
--f Specifies whether the countdown info should be logged into a file named ".countdown".
 
 Here's a sample Usage:
 ```
