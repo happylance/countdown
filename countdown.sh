@@ -114,15 +114,17 @@ function countdown(){
     while true; do
         echo -e "\033[0mStarted to work at" # Normal color
         date '+%H:%M:%S'
-        stop_date=$(($now + $work_period * 60)); 
-        _countdown_one_period "w" $stop_date
+        work_stop_date=$(($now + $work_period * 60)); 
+        _countdown_one_period "w" $work_stop_date
 
-        [ $allow_notification -eq 1 ] && _show_notification
-        stop_date=$(($previous_date + 1))
-        start_date=$(($stop_date + $break_period * 60)); 
+        actual_work_stop_date=$(($previous_date + 1))
+        now=$(date +%s)
+        break_stop_date=$(($actual_work_stop_date + $break_period * 60)); 
+        [ $now -lt $break_stop_date ] && [ $allow_notification -eq 1 ] && _show_notification
+
         echo -e "\033[0;32mTook a break at" # Green color
-        date -j -f '%s' $stop_date '+%H:%M:%S'
-        _countdown_one_period "b" $start_date
+        date -j -f '%s' $actual_work_stop_date '+%H:%M:%S'
+        _countdown_one_period "b" $break_stop_date
 
         _wait_when_display_is_off
      done
