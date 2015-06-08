@@ -12,7 +12,7 @@ This script requires `bash`. I have only tested it in OSX.
 
 -s Show countdown using simple time format which includes minutes only.
 
--n Allow OSX notification when a break period is started.
+-n Allow OSX notification when a break period is started. This option only works in OSX.
 
 -f Specifies whether the countdown info should be logged into a file named ".countdown".
 
