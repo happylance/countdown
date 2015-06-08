@@ -40,6 +40,11 @@ do
 esac
 done
 
+_is_OSX() {
+    [ $(uname) = 'Darwin' ] && return 0
+    return 1
+}
+
 _echo_countdown() {
     if [ "$simple_time_format" -eq 0 ]; then
         time_format='+%M:%S'
@@ -63,6 +68,7 @@ _stop_countdown(){
 }
 
 _is_display_on() {
+    _is_OSX || return 0
     display_state=$(ioreg -r -d 1 -n IODisplayWrangler | grep -i IOPowerManagement | sed 's/.*DevicePowerState"=\([0-9]\).*/\1/g')
     [ $display_state -eq 4 ] && return 0
     return 1
@@ -88,11 +94,6 @@ _countdown_one_period() {
             [ $now -ge $(($previous_date + $break_period * 60)) ] && return;
         done
     done
-}
-
-_is_OSX() {
-    [ $(uname) = 'Darwin' ] && return 0
-    return 1
 }
 
 _show_notification() {
