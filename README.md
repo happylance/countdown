@@ -3,7 +3,7 @@ By default, this script will countdown from 50:00 to 0:01 for work period. Then 
 
 ## Getting Started
 ### Prerequisites
-This script requires `bash`. I have only tested it in OSX.
+This script requires `bash`. 
 ### Basic Installation
 `git clone https://github.com/happylance/countdown.git ; cd countdown`
 
