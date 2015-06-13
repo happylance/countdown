@@ -122,7 +122,7 @@ _countdown_work_period () {
     actual_work_stop_date=$(($previous_date + 1))
     now=$(date +%s)
     break_stop_date=$(($actual_work_stop_date + $break_period * 60)); 
-    [ $now -lt $break_stop_date ] && _show_notification
+    _is_display_on && [ $now -lt $break_stop_date ] && _show_notification
 }
 
 _countdown_break_period () {
