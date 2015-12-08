@@ -18,25 +18,18 @@ EOF
     exit 2
 }
 
-args=$(getopt sw:b: $*)
-[ $? != 0 ] && _echo_usage
-
-set -- $args
-for i
-do
-    case "$i"
-        in
-    -s) simple_time_format=1; update_period=10; shift;;
-    -w)
-        [[ $2 -ge 1 && $2 -le 59 ]] || _echo_usage
-        work_period=$2
-        shift 2;;
-    -b)
-        [[ $2 -ge 1 && $2 -le 10 ]] || _echo_usage
-        break_period=$2
-        shift 2;;
-    --)
-        shift; break;;
+while getopts sw:b: i; do
+    case $i in
+    s) simple_time_format=1; update_period=10;; 
+    w)
+        [[ $OPTARG -ge 1 && $OPTARG -le 59 ]] || _echo_usage
+        work_period=$OPTARG;;
+    b)
+        [[ $OPTARG -ge 1 && $OPTARG -le 10 ]] || _echo_usage
+        break_period=$OPTARG
+        ;;
+    ?)
+        _echo_usage;;
 esac
 done
 
